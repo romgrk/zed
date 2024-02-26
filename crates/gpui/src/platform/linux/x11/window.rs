@@ -90,7 +90,7 @@ pub(crate) struct X11WindowState {
     xcb_connection: Arc<xcb::Connection>,
     display: Rc<dyn PlatformDisplay>,
     raw: RawWindow,
-    x_window: x::Window,
+    pub x_window: x::Window,
     callbacks: Mutex<Callbacks>,
     inner: Mutex<LinuxWindowInner>,
 }
