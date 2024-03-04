@@ -543,14 +543,14 @@ impl Dispatch<wl_keyboard::WlKeyboard, ()> for WaylandClientState {
 
                 match key_state {
                     wl_keyboard::KeyState::Pressed => {
-                        let input = PlatformInput::KeyDown(KeyDownEvent {
-                            keystroke: Keystroke::from_xkb(keymap_state, state.modifiers, keycode),
-                            is_held: false, // todo(linux)
-                        });
-
-                        focused_window.handle_input(input.clone());
-
                         if !keysym.is_modifier_key() {
+                            let input = PlatformInput::KeyDown(KeyDownEvent {
+                                keystroke: Keystroke::from_xkb(keymap_state, state.modifiers, keycode),
+                                is_held: false, // todo(linux)
+                            });
+
+                            focused_window.handle_input(input.clone());
+
                             state.repeat.current_id += 1;
                             state.repeat.current_keysym = Some(keysym);
 
